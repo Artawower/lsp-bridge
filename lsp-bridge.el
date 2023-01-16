@@ -366,7 +366,10 @@ Then LSP-Bridge will start by gdb, please send new issue with `*lsp-bridge*' buf
   "Only popup completion menu when user call `lsp-bridge-popup-complete-menu' command.")
 
 (defcustom lsp-bridge-multi-lang-server-mode-list
-  '()
+  '(
+    (ng2-ts-mode . "angular_typescript")
+    (ng2-html-mode . "angular_html")
+    )
   "The multi lang server rule for file mode."
   :type 'cons)
 
@@ -412,6 +415,8 @@ Then LSP-Bridge will start by gdb, please send new issue with `*lsp-bridge*' buf
 
 (defcustom lsp-bridge-default-mode-hooks
   '(c-mode-hook
+    ng2-ts-mode-hook
+    ng2-html-mode-hook
     c++-mode-hook
     cmake-mode-hook
     java-mode-hook
@@ -508,6 +513,7 @@ you can customize `lsp-bridge-get-workspace-folder' to return workspace folder p
     (nxml-mode                  . nxml-child-indent)       ; XML
     (pascal-mode                . pascal-indent-level)     ; Pascal
     (typescript-mode            . typescript-indent-level) ; Typescript
+    (ng2-ts-mode                . typescript-indent-level) ; Angular
     (sh-mode                    . sh-basic-offset)   ; Shell Script
     (ruby-mode                  . ruby-indent-level) ; Ruby
     (enh-ruby-mode              . enh-ruby-indent-level) ; Ruby
@@ -1093,10 +1099,10 @@ So we build this macro to restore postion after code format."
 
       (when (and (lsp-bridge-epc-live-p lsp-bridge-epc-process)
                  ;; NOTE:
-                 ;;
-                 ;; If we call (thing-at-point 'symbol t) in `after-change-functions'
-                 ;; some org commands conflict with `thing-at-point' that make org commands failed.
-                 (not (member this-command-string '("org-todo" "org-shiftright"))))
+                 ;; `org-todo' will insert extra characters after `PROPERTIES'
+                 ;; if we call (thing-at-point 'symbol t) in `after-change-functions'
+                 ;; It's looks like the bug of `org-todo' that conflict with `thing-at-point'.
+                 (not (member this-command-string '("org-todo"))))
         (let* ((current-word (thing-at-point 'word t))
                (current-symbol (thing-at-point 'symbol t)))
           ;; TabNine search.

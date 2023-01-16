@@ -1,0 +1,18 @@
+{
+  "completion": ["angular-language-server", "vscode-html-language-server"],
+  "completion_item_resolve": [
+    "angular-language-server",
+    "vscode-html-language-server"
+  ],
+  "diagnostics": ["vscode-html-language-server", "angular-language-server"],
+  "code_action": ["vscode-html-language-server", "angular-language-server"],
+  "execute_command": ["vscode-html-language-server", "angular-language-server"],
+  "find_define": "angular-language-server",
+  "find_implementation": "angular-language-server",
+  "find_references": "angular-language-server",
+  "formatting": "angular-language-server",
+  "hover": "angular-language-server",
+  "signature_help": "angular-language-server",
+  "prepare_rename": "angular-language-server",
+  "rename": "angular-language-server"
+}

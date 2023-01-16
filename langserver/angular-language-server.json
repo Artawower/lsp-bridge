@@ -1,0 +1,13 @@
+{
+  "name": "angular-language-server",
+  "languageId": "angular",
+  "command": [
+    "node",
+    "/Users/darkawower/.npm-global/lib/node_modules/@angular/language-server",
+    "--ngProbeLocations",
+    "/Users/darkawower/.npm-global/lib/node_modules",
+    "--tsProbeLocations",
+    "/Users/darkawower/.npm-global/lib/node_modules",
+    "--stdio"
+  ]
+}
